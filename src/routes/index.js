@@ -1,12 +1,14 @@
 const {Router} = require("express");
-const usersRoutes = require('./users.routes')
-const mealsRoutes = require('./meals.routes');
-const authenticateToken = require("../middleware/authenticateToken");
+const partidaRoutes = require('./partidas.routes');
+const jogadorRoutes = require('./jogadores.routes');
+const timeRoustes = require('./times.routes');
 
 const routes = Router();
 
- routes.use("/api/v1/users", usersRoutes);
+ routes.use("/api/v1/jogadores", jogadorRoutes);
 
- routes.use("/api/v1/meals",authenticateToken, mealsRoutes);
+ routes.use("/api/v1/partidas", partidaRoutes);
+
+ routes.use("/api/v1/times", timeRoustes);
 
 module.exports = routes;

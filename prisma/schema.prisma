@@ -13,24 +13,29 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Users {
-  id       String  @id @default(uuid())
-  name     String  @unique @db.VarChar(100)
-  email    String  @unique @db.VarChar(50)
-  password String  @unique @db.VarChar(50)
-  age      Int?
-  height   Float?
-  phone    String? @db.VarChar(45)
-  weight   Float?
-  Meals    Meals[]
+model Jogadores {
+  id            String  @id @default(uuid())
+  nome          String  @db.VarChar(50)
+  idade         Int
+  posicao       String  @db.VarChar(50)
+  nacionalidade String  @db.VarChar(50)
+  Time          Times[]
 }
 
-model Meals {
-  id          String   @id @default(uuid())
-  name        String   @db.VarChar(50)
-  description String?  @db.VarChar(50)
-  dateTime    DateTime @default(now())
-  isInDiet    Boolean  @default(true)
-  User        Users    @relation(fields: [idUser], references: [id])
-  idUser      String
+model Times {
+  id          String      @id @default(uuid())
+  nome        String      @db.VarChar(50)
+  anoFundacao Int
+  pais        String      @db.VarChar(50)
+  tecnico     String      @db.VarChar(50)
+  Jogador     Jogadores[]
+}
+
+model Partidas {
+  id            String @id @default(uuid())
+  data          String @db.VarChar(50)
+  local         String @db.VarChar(50)
+  placar        String @db.VarChar(50)
+  timeCasa      String @db.VarChar(50)
+  timeVisitante String @db.VarChar(50)
 }
